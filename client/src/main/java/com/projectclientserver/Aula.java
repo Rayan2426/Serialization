@@ -10,6 +10,8 @@ public class Aula {
         alunni = new ArrayList<>();
     }
 
+    public Aula(){}
+
     public void addAlunno(Alunno A){
         alunni.add(A);
     }
@@ -24,7 +26,7 @@ public class Aula {
         String respone = this.sezione + ":";
 
         for (Alunno alunno : alunni) {
-            respone += alunno.toString();
+            respone += "Nome: " + alunno.getNome() + "\tCognome: " + alunno.getCognome() + "\tData di Nascita: " + alunno.getDataNascita() + "\n";
         }
 
         return respone.isEmpty() ? "none" : respone;

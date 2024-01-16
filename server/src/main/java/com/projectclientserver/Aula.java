@@ -10,6 +10,8 @@ public class Aula {
         alunni = new ArrayList<>();
     }
 
+    public Aula(){}
+
     public void addAlunno(Alunno A){
         alunni.add(A);
     }

@@ -11,6 +11,8 @@ public class Alunno {
         this.dataNascita = dataNascita;
     }
 
+    public Alunno(){}
+
     @Override
     public String toString() {
         return nome+","+cognome+","+dataNascita+";";

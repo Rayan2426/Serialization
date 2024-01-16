@@ -4,6 +4,8 @@ import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
 public class Main {
     public static void main(String[] args) {
         Aula aula = new Aula("5DIA");
@@ -14,12 +16,14 @@ public class Main {
         aula.addAlunno("Lorenzo","Turing","31/05/2001");
         try {
             ServerSocket server = new ServerSocket(3000);
+            XmlMapper xml = new XmlMapper();
             do{
                 System.out.println("SERVER IN ASCOLTO");
                 Socket s = server.accept();
                 System.out.println("UN CLIENT SI E' CONNESSO");
                 DataOutputStream out = new DataOutputStream(s.getOutputStream());
-                out.writeBytes(aula.toString() + "\n");
+                String response = xml.writeValueAsString(aula);
+                out.writeBytes(response + "\n");
                 System.out.println("LISTA ALUNNI MANDATA");
             }while(true);
         } catch (Exception e) {

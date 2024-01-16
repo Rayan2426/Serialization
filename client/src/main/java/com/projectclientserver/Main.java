@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
 public class Main {
     public static void main(String[] args) {
         try {
@@ -12,22 +14,28 @@ public class Main {
 
             String response = in.readLine();
 
-            String[] dettagli = response.split(":");
-            System.out.println("Classe: " + dettagli[0]);
+           XmlMapper xml = new XmlMapper();
 
-            String[] rawList = dettagli[1].split(";");
+           Aula aula = xml.readValue(response, Aula.class);
 
-            for (String alunno : rawList) {
-                String[] details = alunno.split(",");
-                String nome = details[0];
-                String cognome = details[1];
-                String data = details[2];
+           System.out.println(aula.toString());
 
-                System.out.println("Nome: " + nome + "\tCognome: " + cognome + "\t\tData di Nascita: " + data);
-            }
+            // String[] dettagli = response.split(":");
+            // System.out.println("Classe: " + dettagli[0]);
+
+            // String[] rawList = dettagli[1].split(";");
+
+            // for (String alunno : rawList) {
+            //     String[] details = alunno.split(",");
+            //     String nome = details[0];
+            //     String cognome = details[1];
+            //     String data = details[2];
+
+            //     System.out.println("Nome: " + nome + "\tCognome: " + cognome + "\t\tData di Nascita: " + data);
+            // }
             
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println(e.getMessage());
         }
     }
 }
