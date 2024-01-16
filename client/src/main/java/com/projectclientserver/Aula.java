@@ -23,7 +23,7 @@ public class Aula {
 
     @Override
     public String toString() {
-        String respone = this.sezione + ":";
+        String respone ="Classe: " +  this.sezione + "\n";
 
         for (Alunno alunno : alunni) {
             respone += "Nome: " + alunno.getNome() + "\tCognome: " + alunno.getCognome() + "\tData di Nascita: " + alunno.getDataNascita() + "\n";
