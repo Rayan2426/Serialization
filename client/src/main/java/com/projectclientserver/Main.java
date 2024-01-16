@@ -1,0 +1,33 @@
+package com.projectclientserver;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.Socket;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            Socket s = new Socket("localhost",3000);
+            BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+            String response = in.readLine();
+
+            String[] dettagli = response.split(":");
+            System.out.println("Classe: " + dettagli[0]);
+
+            String[] rawList = dettagli[1].split(";");
+
+            for (String alunno : rawList) {
+                String[] details = alunno.split(",");
+                String nome = details[0];
+                String cognome = details[1];
+                String data = details[2];
+
+                System.out.println("Nome: " + nome + "\tCognome: " + cognome + "\t\tData di Nascita: " + data);
+            }
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+}
